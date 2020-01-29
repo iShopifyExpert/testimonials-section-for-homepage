@@ -1,7 +1,7 @@
 <link href="//cdn.shopify.com/s/files/1/0079/1874/7711/t/10/assets/owl.carousel.min.css?v=7051608981761278196" rel="stylesheet" type="text/css" media="all">
 <link href="//cdn.shopify.com/s/files/1/0079/1874/7711/t/10/assets/owl.theme.default.min.css?v=13504611835828271336" rel="stylesheet" type="text/css" media="all">
 <section class="testimonials">
-    <div class="container">
+    <div class="container page-width">
         <div class="heading">{% if section.settings.title != blank %}
             <h1>{{ section.settings.title | escape }}</h1>{% endif %}{% if section.settings.sub_title != blank %}
             <p class="title">{{ section.settings.sub_title | escape }}</p>{% endif %}
@@ -10,7 +10,7 @@
           {% for block in section.blocks %}
           <div class="testimonial_content_wrap">
             <div class="testimonial_content">
-              <img src="https://cdn.shopify.com/s/files/1/0079/1874/7711/t/10/assets/db_quote.png?v=7587895646622930439" alt="" class="quote_icon lazyload">
+              <img src="{{'db_quote.png' | asset_url}}">
               <ul class="rating">
                 <li><i class="fas fa-star"></i></li>
                 <li><i class="fas fa-star"></i></li>
@@ -22,7 +22,7 @@
             </div>
             <div class="client_wrap">
               <div class="client_img">
-                <img class="lazyload" src="//cdn.shopify.com/s/files/1/0079/1874/7711/files/Casey_5d082cf8-e194-451b-9919-d848c2c881f8.png?v=1571665647" alt="">
+                {{ section.settings.image | img_url: 'small' | img_tag: section.settings.image.alt, 'lazyloaded' }}
               </div>
               <div class="client_detail">
                 <h6>— {{ block.settings.name }}</h6>
@@ -34,66 +34,7 @@
 		</div>
 	</div>
 </section>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="//cdn.shopify.com/s/files/1/0079/1874/7711/t/10/assets/owl.carousel.min.js?v=9789144081155345425" defer="defer"></script>
-<script>
-  $(document).ready(function() {
-    $("#testimonial").owlCarousel({
-        loop: true,
-        items: 3,
-        margin: 20,
-        nav: true,
-        navText: ["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"],
-        responsiveClass: true,
-        responsive: {
-            0: {
-                items: 1,
-                nav: false
-            },
-            480: {
-                items: 1,
-                margin: 0,
-                nav: false
-            },
-            769: {
-                items: 2
-            },
-            992: {
-                items: 3
-            }
-        }
-    });
-  
-    $('.slider_Collection_section .owl-carousel').owlCarousel({
-      loop: true,
-      margin: 10,
-      nav: true,
-      autoplay: true,
-      autoplayHoverPause: true,
-      responsive: {
-        0: {
-          items: 1
-        },
-        600: {
-          items: 3
-        },
-        1000: {
-          items: 5
-        }
-      }
-    });
-  	
-  	$(window).on('load', function(){
-        var acountry = localStorage.getItem('pawramp_ccode');
-        if (acountry !== 'US') {
-           $(".product-form__item--payment-button").addClass("notUScountry");
-            $(".bold_hidden").css("display", "block!important;");
-            $(".bold_clone").css("display", "none!important;");
-        }
-    });  
- 
-});
-</script>
+
 {% schema %}
   {
     "name": "Home Testimonials",
@@ -156,7 +97,66 @@
     }]
   }
 {% endschema %}
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="//cdn.shopify.com/s/files/1/0079/1874/7711/t/10/assets/owl.carousel.min.js?v=9789144081155345425" defer="defer"></script>
+<script>
+  $(document).ready(function() {
+    $("#testimonial").owlCarousel({
+        loop: true,
+        items: 3,
+        margin: 20,
+        nav: true,
+        navText: ["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"],
+        responsiveClass: true,
+        responsive: {
+            0: {
+                items: 1,
+                nav: false
+            },
+            480: {
+                items: 1,
+                margin: 0,
+                nav: false
+            },
+            769: {
+                items: 2
+            },
+            992: {
+                items: 3
+            }
+        }
+    });
+  
+    $('.slider_Collection_section .owl-carousel').owlCarousel({
+      loop: true,
+      margin: 10,
+      nav: true,
+      autoplay: true,
+      autoplayHoverPause: true,
+      responsive: {
+        0: {
+          items: 1
+        },
+        600: {
+          items: 3
+        },
+        1000: {
+          items: 5
+        }
+      }
+    });
+  	
+  	$(window).on('load', function(){
+        var acountry = localStorage.getItem('pawramp_ccode');
+        if (acountry !== 'US') {
+           $(".product-form__item--payment-button").addClass("notUScountry");
+            $(".bold_hidden").css("display", "block!important;");
+            $(".bold_clone").css("display", "none!important;");
+        }
+    });  
+ 
+});
+</script>
 <style>
   .testimonials {
     background-color: #0d00ff;
