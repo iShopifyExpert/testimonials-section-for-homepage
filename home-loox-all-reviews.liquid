@@ -1,0 +1,40 @@
+<section class="loox-all-reviews">
+  <div class="container page-width">
+    <div class="heading">{% if section.settings.title != blank %}
+      <h1>{{ section.settings.title | escape }}</h1>{% endif %}{% if section.settings.sub_title != blank %}
+      <p class="title">{{ section.settings.sub_title | escape }}</p>{% endif %}
+    </div>{% if section.settings.product != blank %}
+    {% assign product = all_products[section.settings.product] %}
+    <div id="looxReviews" data-product-id="{{product.id}}" style="margin:0 auto;max-width:1080px;"></div>{% endif %}
+  </div>
+</section>
+{% schema %}
+  {
+    "name": "Home loox Reviews",
+    "class": "index-sections",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Paw Ramp Reviews"
+      },
+      {
+        "type": "textarea",
+        "id": "sub_title",
+        "label": "Sub Heading",
+        "default": "Over 25,500 Happy Customers!"
+      },
+      {
+        "type": "product",
+        "id": "product",
+        "label": "Select Product",
+        "info": "Selectd Product reviews will be shown here. From Loox App!"
+      }
+    ],
+    "presets": [{
+      "name": "Home loox Reviews",
+      "category": "Homepage"
+    }]
+  }
+{% endschema %}
