@@ -22,7 +22,7 @@
             </div>
             <div class="client_wrap">
               <div class="client_img">
-                {{ section.settings.image | img_url: 'small' | img_tag: section.settings.image.alt, 'lazyloaded' }}
+                {{ block.settings.image | img_url: 'small' | img_tag: block.settings.image.alt, 'lazyloaded' }}
               </div>
               <div class="client_detail">
                 <h6>— {{ block.settings.name }}</h6>
